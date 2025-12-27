@@ -1,142 +1,60 @@
-<!DOCTYPE html>
+<!i  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Birthday Notebook</title>
+    <title>Happy Birthday YASH!</title>
     <style>
-        :root { --cover: #ad1457; --page: #fff0f3; --text: #4a4a4a; }
-        body { margin: 0; background: #ffebee; display: flex; justify-content: center; align-items: center; height: 100vh; perspective: 1500px; font-family: 'Arial', sans-serif; overflow: hidden; }
+        body { margin: 0; background: #fff0f3; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; text-align: center; }
         
-        /* Intro Password */
-        #intro { position: fixed; inset: 0; background: white; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 1s; }
-        input { padding: 12px; border: 2px solid var(--cover); border-radius: 10px; margin: 15px; text-align: center; font-size: 18px; }
+        /* Floating Hearts Animation */
+        .hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .heart { position: absolute; color: #ff4d6d; font-size: 20px; animation: float 5s linear infinite; opacity: 0; }
+        @keyframes float { 0% { transform: translateY(100vh) scale(0); opacity: 1; } 100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } }
 
-        /* 3D Book Container */
-        .book { width: 320px; height: 450px; position: relative; transition: transform 0.5s; transform-style: preserve-3d; display: none; }
-        .page { width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: var(--page); border-radius: 0 15px 15px 0; box-shadow: inset 3px 0 10px rgba(0,0,0,0.1); transform-origin: left; transform-style: preserve-3d; transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1); display: flex; flex-direction: column; padding: 20px; box-sizing: border-box; z-index: 1; }
+        /* Card Container */
+        .card { 
+            background: white; padding: 25px; border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 10; 
+            max-width: 90%; border: 2px solid #ffb3c1; 
+            animation: popIn 1s ease-out;
+        }
+        @keyframes popIn { 0% { transform: scale(0.5); } 100% { transform: scale(1); } }
+
+        h1 { color: #ff4d6d; font-size: 22px; margin: 10px 0; }
+        .message { color: #444; line-height: 1.5; font-size: 15px; white-space: pre-wrap; }
+        .cake { font-size: 50px; margin: 15px 0; }
+        .tree { font-size: 45px; animation: sway 3s infinite alternate; margin-bottom: 10px; }
+        @keyframes sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
         
-        /* Flipped State */
-        .flipped { transform: rotateY(-180deg); z-index: 2; }
-
-        /* Covers */
-        .cover { background: var(--cover); border-radius: 5px 15px 15px 5px; color: gold; justify-content: center; align-items: center; text-align: center; z-index: 10; }
-        .back-cover { background: var(--cover); transform: rotateY(0deg); }
-
-        /* Page Content Styles */
-        .hb-stylish { font-size: 32px; font-weight: bold; color: var(--cover); opacity: 0; }
-        .typewriter { animation: typing 2s steps(20) forwards; border-right: 2px solid; white-space: nowrap; overflow: hidden; }
-        @keyframes typing { from { width: 0; opacity: 1; } to { width: 100%; opacity: 1; } }
-
-        .y-cap { position: relative; display: inline-block; }
-        .y-cap::after { content: '👑'; position: absolute; top: -20px; left: 0; font-size: 20px; transform: rotate(-15deg); }
-
-        /* Floating Balloon Boy */
-        .balloon-boy { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--cover); margin: 20px auto; animation: floatUp 4s ease-in-out infinite; background: #ccc; overflow: hidden; }
-        @keyframes floatUp { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(1.05); } }
-
-        /* Petals */
-        .petal { position: absolute; color: #ff85a2; font-size: 20px; user-select: none; pointer-events: none; animation: fall linear forwards; }
-        @keyframes fall { to { transform: translateY(500px) rotate(360deg); opacity: 0; } }
-
-        .candle { font-size: 50px; cursor: pointer; transition: 0.3s; }
-        .flame { display: none; font-size: 30px; animation: flicker 0.2s infinite; }
-        @keyframes flicker { from { opacity: 0.8; } to { opacity: 1; } }
-
-        .next-btn { position: absolute; bottom: 10px; right: 10px; padding: 8px 15px; background: var(--cover); color: white; border: none; border-radius: 10px; cursor: pointer; }
+        /* Background Sparkles */
+        .sparkle { position: absolute; background: gold; border-radius: 50%; animation: twinkle 2s infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
     </style>
 </head>
 <body>
-
-<div id="intro">
-    <h1 style="color: var(--cover)">Bday Boy Name?</h1>
-    <input type="text" id="pass" placeholder="Enter here...">
-    <button onclick="unlock()" style="padding: 10px 30px; border-radius: 20px; background: var(--cover); color: white; border: none;">Open Book</button>
-</div>
-
-<div class="book" id="myBook">
-    <div class="page cover" id="page0">
-        <h2>HAPPY BIRTHDAY<br>YASH ✨</h2>
-        <p>Aesthetic Journal</p>
-        <button class="next-btn" onclick="flip(0)">Open 📖</button>
-    </div>
-
-    <div class="page" id="page1">
-        <h1 class="hb-stylish typewriter">Hye Bday Boy! 🎆</h1>
-        <div style="font-size: 80px; margin-top: 50px;">🎆✨🎇</div>
-        <p>Ready for the surprise?</p>
-        <button class="next-btn" onclick="flip(1)">Next ➡️</button>
-    </div>
-
-    <div class="page" id="page2">
-        <div class="hb-stylish typewriter" style="animation-delay: 1s;">HAPP<span class="y-cap">Y</span></div>
-        <div class="hb-stylish typewriter" style="animation-delay: 2s;">BIRTHDAY</div>
-        <div class="balloon-boy">
-            <img src="yash.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Upload yash.jpg">
+    <div class="hearts" id="heartContainer"></div>
+    <div class="card">
+        <div class="tree">🌳✨</div>
+        <h1>┣𝖑᧘ρρ𝛄 𝛃𝛊ɼᴛͱ꧊𝗱𝚫𝛄 ʏ꯭ᴀ꯭s꯭ͱ꧊....💘</h1>
+        <div class="cake">🕯️<br>🎂</div>
+        <div class="message">
+ᴜ ᴀʀᴇ ටිρ𝛆ɔ𝛊ᴀɭ.....✨
+ɢᴏᴅ ᴀᴘᴋɪ ʟɪғᴇ ᴀʟᴡᴀʏs ʜᴀᴘᴘɪᴇ ʀᴀᴋʜᴇ ᴀᴘᴋᴏ ʜᴀʀ ᴇᴋ ᴘʀᴏʙʟᴇᴍ s ᴅᴜʀ ʀᴀᴋʜᴇ ᴀᴘᴋɪ ᴀʟʟ ᴡɪsʜ ᴄᴏᴍᴘʟᴇᴛᴇ ʜᴏ....💯 ᴀᴘ ᴀʟᴡᴀʏs sᴜᴄᴄᴇssғᴜʟʟ ʜᴏ....🤞ᴜ ʜᴀᴠᴇ ᴀ ʙʀɪɢʜᴛ ғᴜᴛᴜʀᴇ....✨
         </div>
-        <div style="background:var(--cover); color:white; padding:5px 20px; border-radius:10px; display:inline-block; margin:auto;">Yash</div>
-        <button class="next-btn" onclick="flip(2)">Read Note 📩</button>
     </div>
 
-    <div class="page" id="page3">
-        <div id="candleSection" style="text-align:center;">
-            <div id="flame" class="flame">🔥</div>
-            <div class="candle" onclick="lightCandle()">🕯️</div>
-            <p id="hint">Touch to light & see petals!</p>
-        </div>
-        <div id="note" style="display:none; font-size: 13px; line-height: 1.6; text-align: left; margin-top: 10px;">
-            <b>┣𝖑᧘ρρ𝛄 𝛃𝛊ɼ།͞ͱ꧊𝗱𝚫𝛄 ʏ꯭ᴀ꯭s꯭ͱ꧊....💘🎂</b><br>
-            28-ᴅᴇᴄ-2025<br>
-            ᴜ ᴀʀᴇ ටිρ𝛆ɔ𝛊ᴀɭ.....✨<br>
-            ɢᴏᴅ ᴀᴘᴋɪ ʟɪғᴇ ᴀʟᴡᴀʏs ʜᴀᴘᴘɪᴇ ʀᴀᴋʜᴇ ᴀᴘᴋᴏ ʜᴀʀ ᴇᴋ ᴘʀᴏʙʟᴇᴍ s ᴅᴜʀ ʀᴀᴋʜᴇ ᴀᴘᴋᴋ ᴀʟʟ ᴡɪsʜ ᴄᴏᴍᴘʟᴇᴛᴇ ʜᴏ.... ᴜ ʜᴀᴠᴇ ᴀ ʙʀɪɢʜᴛ ғᴜᴛᴜʀᴇ....✨
-        </div>
-        <button class="next-btn" onclick="flip(3)">Final Gift 🎁</button>
-    </div>
-
-    <div class="page" id="page4">
-        <h2>Your Birthday Gift ⌚</h2>
-        <div style="font-size: 100px; margin: 40px 0;">⌚✨</div>
-        <p>A beautiful watch for your beautiful time!</p>
-        <button class="next-btn" onclick="flip(4)">Close Book 📕</button>
-    </div>
-
-    <div class="page cover back-cover" id="page5">
-        <h2>10x for reading my msg!</h2>
-        <p>U HAVE A BRIGHT FUTURE ✨</p>
-        <div style="font-size: 40px;">💖</div>
-    </div>
-</div>
-
-<script>
-    function unlock() {
-        if(document.getElementById('pass').value.toLowerCase() === 'yash') {
-            document.getElementById('intro').style.display = 'none';
-            document.getElementById('myBook').style.display = 'block';
-        } else { alert("Enter Yash!"); }
-    }
-
-    function flip(id) {
-        document.getElementById('page' + id).classList.add('flipped');
-    }
-
-    function lightCandle() {
-        document.getElementById('flame').style.display = 'block';
-        document.getElementById('note').style.display = 'block';
-        document.getElementById('hint').innerHTML = "Make a wish! ✨";
-        
-        // Falling petals effect
-        for(let i=0; i<30; i++) {
-            setTimeout(() => {
-                const petal = document.createElement('div');
-                petal.classList.add('petal');
-                petal.innerHTML = '🌸';
-                petal.style.left = Math.random() * 100 + '%';
-                petal.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                document.getElementById('page3').appendChild(petal);
-                setTimeout(() => petal.remove(), 4000);
-            }, i * 100);
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.getElementById('heartContainer').appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
         }
-    }
-</script>
+        setInterval(createHeart, 300);
+    </script>
 </body>
 </html>
