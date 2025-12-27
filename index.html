@@ -1,46 +1,276 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday YASH!</title>
-    <style>
-        body { margin: 0; background: #fff0f3; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
-        .hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-        .heart { position: absolute; color: #ff4d6d; font-size: 20px; animation: float 5s linear infinite; opacity: 0; }
-        @keyframes float { 0% { transform: translateY(100vh) scale(0); opacity: 1; } 100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } }
-        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; z-index: 10; max-width: 320px; border: 2px solid #ffb3c1; animation: popIn 1s ease-out; }
-        @keyframes popIn { 0% { transform: scale(0.5); } 100% { transform: scale(1); } }
-        h1 { color: #ff4d6d; font-size: 24px; margin-bottom: 10px; }
-        .message { color: #555; line-height: 1.6; font-size: 16px; font-weight: bold; }
-        .cake { font-size: 50px; margin: 20px 0; }
-        .tree { font-size: 40px; animation: sway 3s infinite alternate; }
-        @keyframes sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
-    </style>
+<meta charset="UTF-8">
+<title>Birthday Notebook</title>
+
+<style>
+body{
+  margin:0;
+  background:#fde6ee;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  overflow:hidden;
+}
+
+/* START SCREEN */
+#startScreen{
+  position:fixed;
+  inset:0;
+  background:#ffd6e8;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+#startScreen input{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:18px;
+}
+#startScreen button{
+  margin-top:15px;
+  padding:10px 30px;
+  border:none;
+  border-radius:20px;
+  background:#ff4f81;
+  color:white;
+  font-size:18px;
+}
+
+/* NOTEBOOK */
+#notebook{
+  width:330px;
+  height:470px;
+  margin:30px auto;
+  background:white;
+  border-radius:18px;
+  box-shadow:0 20px 40px rgba(0,0,0,.2);
+  display:none;
+  position:relative;
+  overflow:hidden;
+}
+
+/* PAGE */
+.page{
+  position:absolute;
+  inset:0;
+  background:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  transition:transform 1s;
+}
+
+/* COVER */
+.cover{
+  background:#ff4f81;
+  color:white;
+}
+.cover h1{
+  font-size:36px;
+}
+
+/* TURN BUTTON */
+.turn{
+  position:absolute;
+  bottom:12px;
+  right:12px;
+  background:#ff4f81;
+  color:white;
+  padding:8px 16px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* CANDLES */
+.candle-box{
+  display:flex;
+}
+.candle{
+  width:18px;
+  height:55px;
+  background:#ffb703;
+  margin:6px;
+  cursor:pointer;
+}
+.candle.off{
+  background:#999;
+}
+
+/* HAPPY TEXT */
+.letter span{
+  font-size:30px;
+  font-weight:700;
+  opacity:0;
+  animation:show .4s forwards;
+}
+@keyframes show{
+  to{opacity:1;}
+}
+
+/* PHOTO */
+.photo{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  overflow:hidden;
+  margin-top:15px;
+  transform:translateY(200px);
+  animation:slideUp 1s forwards;
+}
+@keyframes slideUp{
+  to{transform:translateY(0);}
+}
+
+/* NOTE PAGE (3rd PAGE) */
+.note-page{
+  background:#fff0f6;
+}
+.note-box{
+  background:white;
+  padding:22px;
+  border-radius:18px;
+  width:85%;
+  text-align:center;
+  border:3px dashed #ff7aa2;
+}
+.fancy-title{
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#ff3d7f;
+}
+.date{
+  font-size:18px;
+  margin:10px 0;
+}
+.line{
+  font-size:18px;
+  font-style:italic;
+}
+.msg{
+  font-size:16px;
+  line-height:1.8;
+  margin-top:10px;
+}
+
+/* LAST PAGE */
+.last{
+  background:#ff4f81;
+  color:white;
+  text-align:center;
+}
+</style>
 </head>
+
 <body>
-    <div class="hearts" id="heartContainer"></div>
-    <div class="card">
-        <div class="tree">🌳✨</div>
-        <h1>┣𝖑᧘ρρ𝛄 𝛃𝛊ɼ།͞ͱ꧊𝗱𝚫𝛄 ʏ꯭ᴀ꯭s꯭ͱ꧊....💘</h1>
-        <div class="cake">🕯️<br>🎂</div>
-        <div class="message">
-            <p>🅄 𐍂͢ ටිρ𝛆ɔ𝛊ᴀɭ.....✨</p>
-            <p>ɢᴏᴅ ᴀᴘᴋɪ ʟɪғᴇ ᴀʟᴡᴀʏs ʜᴀᴘᴘɪᴇ ʀᴀᴋʜᴇ ᴀᴘᴋᴏ ʜᴀʀ ᴇᴋ ᴘʀᴏʙʟᴇᴍ s ᴅᴜʀ ʀᴀᴋʜᴇ ᴜʀ ᴀʟʟ ᴡɪsʜ ᴄᴏᴍᴇ ᴛᴜʀᴇ.... ᴜ ʜᴀᴠᴇ ᴀ ʙʀɪɢʜᴛ ғᴜᴛᴜʀᴇ....✨</p>
-        </div>
+
+<!-- START -->
+<div id="startScreen">
+  <h2>Birthday Boy Name?</h2>
+  <input id="nameInput" placeholder="Enter name">
+  <button onclick="start()">Open Notebook</button>
+</div>
+
+<!-- NOTEBOOK -->
+<div id="notebook">
+
+<!-- PAGE 1 COVER -->
+<div class="page cover" id="p1">
+  <h1 id="coverName"></h1>
+  <div class="turn" onclick="next(1)">Open</div>
+</div>
+
+<!-- PAGE 2 CANDLES -->
+<div class="page" id="p2">
+  <h2>Blow the Candles 🎂</h2>
+  <div class="candle-box">
+    <div class="candle" onclick="off(this)"></div>
+    <div class="candle" onclick="off(this)"></div>
+    <div class="candle" onclick="off(this)"></div>
+  </div>
+  <div class="turn" onclick="next(2)">Turn Page</div>
+</div>
+
+<!-- PAGE 3 NOTE (FONT LOOK) -->
+<div class="page note-page" id="p3">
+  <div class="note-box">
+
+    <div class="fancy-title">
+      Happy Birthday Yash 💘🎂
     </div>
-    <script>
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.getElementById('heartContainer').appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
-        }
-        setInterval(createHeart, 300);
-    </script>
+
+    <div class="date">
+      🎂 28 Dec 2025 🎂
+    </div>
+
+    <div class="line">You are special ✨</div>
+
+    <div class="msg">
+      God aapki life hamesha happy rakhe 😇<br>
+      Aapko har ek problem se door rakhe 🙏🏻<br>
+      Aapki saari wishes complete ho 💗<br>
+      Aap always successful ho 💯<br>
+      Have a bright future ✨
+    </div>
+
+  </div>
+  <div class="turn" onclick="next(3)">Next</div>
+</div>
+
+<!-- PAGE 4 HAPPY TEXT + PHOTO -->
+<div class="page" id="p4">
+  <div class="letter" id="hb"></div>
+  <div class="photo">
+    <img src="YOUR_IMAGE_HERE.jpg" width="100%">
+  </div>
+  <h3>Yash</h3>
+  <div class="turn" onclick="next(4)">Next</div>
+</div>
+
+<!-- PAGE 5 LAST -->
+<div class="page last" id="p5">
+  <h2>Thanks for reading my msg 💖</h2>
+  <p>You have a bright future ✨</p>
+</div>
+
+</div>
+
+<script>
+function start(){
+  let n=document.getElementById("nameInput").value;
+  if(n.toLowerCase()!=="yash"){
+    alert("Wrong name!");
+    return;
+  }
+  document.getElementById("startScreen").style.display="none";
+  document.getElementById("notebook").style.display="block";
+  document.getElementById("coverName").innerText=n;
+  happyText();
+}
+
+function next(i){
+  document.getElementById("p"+i).style.transform="rotateY(-180deg)";
+}
+
+function off(c){
+  c.classList.add("off");
+}
+
+function happyText(){
+  let text="HAPPY BIRTHDAY";
+  let box=document.getElementById("hb");
+  [...text].forEach((l,i)=>{
+    let s=document.createElement("span");
+    s.innerText=l;
+    s.style.animationDelay=i*0.2+"s";
+    box.appendChild(s);
+  });
+}
+</script>
+
 </body>
 </html>
-
