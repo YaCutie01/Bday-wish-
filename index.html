@@ -1,4 +1,4 @@
-<!i  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,54 +14,73 @@
 
         /* Card Container */
         .card { 
-            background: white; padding: 25px; border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 10; 
+            background: white; padding: 25px; border-radius: 25px; 
+            box-shadow: 0 15px 40px rgba(255, 77, 109, 0.2); z-index: 10; 
             max-width: 90%; border: 2px solid #ffb3c1; 
             animation: popIn 1s ease-out;
         }
         @keyframes popIn { 0% { transform: scale(0.5); } 100% { transform: scale(1); } }
 
-        h1 { color: #ff4d6d; font-size: 22px; margin: 10px 0; }
-        .message { color: #444; line-height: 1.5; font-size: 15px; white-space: pre-wrap; }
-        .cake { font-size: 50px; margin: 15px 0; }
-        .tree { font-size: 45px; animation: sway 3s infinite alternate; margin-bottom: 10px; }
-        @keyframes sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+        h1 { color: #ff4d6d; font-size: 20px; margin: 15px 0; letter-spacing: 0.5px; }
         
-        /* Background Sparkles */
-        .sparkle { position: absolute; background: gold; border-radius: 50%; animation: twinkle 2s infinite; }
-        @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+        /* New ASCII Cake Style */
+        .ascii-cake {
+            font-family: monospace;
+            white-space: pre;
+            font-size: 10px;
+            color: #ad1457;
+            line-height: 1.2;
+            display: inline-block;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .message { 
+            color: #444; 
+            line-height: 1.6; 
+            font-size: 14px; 
+            background: #fffafa;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 10px;
+        }
+        
+        .sparkle-decor { color: gold; font-size: 20px; margin-bottom: 5px; }
     </style>
 </head>
 <body>
     <div class="hearts" id="heartContainer"></div>
+    
     <div class="card">
-        <div class="ʜᴇᴀʀᴛ">💗✨</div>
-        <h1>┣𝖑᧘ρρ𝛄 𝛃𝛊ɼᴛͱ꧊𝗱𝚫𝛄 ʏ꯭ᴀ꯭s꯭ͱ꧊....💘</h1>
-        <div class="cake">┈┈ ✨✨✨✨✨┈
-┈┈╭┻┻┻┻┻┻┻┻┻╮┈┈
-┈┈┃╱╲╱╲╱╲╱╲╱┃┈┈
-┈╭┻━━━━━━━━━┻╮┈
-┈┃╱╲╱╲╱╲╱╲╱╲╱┃┈
-┈┗━━━━━━━━━━━┛┈<br>＊🎁🎂🧁💗🧁🎂🎁＊╮*°
-'█▄█ █▀█ █▀█ █▀█ █▄█
-'█▀█ █▀█ █▀▀ █▀▀ ░█'░
+        <div class="sparkle-decor">✨✨✨</div>
+        
+        <div class="ascii-cake">
+  ✨✨✨✨✨
+ ╭┻┻┻┻┻┻┻┻┻╮
+ ┃╱╲╱╲╱╲╱╲╱┃
+╭┻━━━━━━━━━┻╮
+┃╱╲╱╲╱╲╱╲╱╲╱┃
+┗━━━━━━━━━━━┛
+        </div>
 
-𓇚꯭𝐁𝄄𓌊꯭𝄄𝐈𝄄𓌊꯭𝄄𝐑𝄄𓌊꯭𝄄𝐓𝄄𓌊꯭𝄄𝐇𝄄𓌊꯭𝄄𝐃𝄄𓌊꯭𝄄𝐀𝄄𓌊꯭𝄄𝐘𓇚꯭</div>
+        <h1>┣𝖑᧘ρρ𝛄 𝛃𝛊ɼ།͞ͱ꧊𝗱𝚫𝛄 ʏ꯭ᴀ꯭s꯭ͱ꧊....💘</h1>
+
         <div class="message">
-ᴜ ᴀʀᴇ ටිρ𝛆ɔ𝛊ᴀɭ.....✨
-ɢᴏᴅ ᴀᴘᴋɪ ʟɪғᴇ ᴀʟᴡᴀʏs ʜᴀᴘᴘɪᴇ ʀᴀᴋʜᴇ ᴀᴘᴋᴏ ʜᴀʀ ᴇᴋ ᴘʀᴏʙʟᴇᴍ s ᴅᴜʀ ʀᴀᴋʜᴇ ᴀᴘᴋɪ ᴀʟʟ ᴡɪsʜ ᴄᴏᴍᴘʟᴇᴛᴇ ʜᴏ....💯 ᴀᴘ ᴀʟᴡᴀʏs sᴜᴄᴄᴇssғᴜʟʟ ʜᴏ....🤞ᴜ ʜᴀᴠᴇ ᴀ ʙʀɪɢʜᴛ ғᴜᴛᴜʀᴇ....✨
+        ᴜ ᴀʀᴇ ටිρ𝛆ɔ𝛊ᴀɭ.....✨
+ɢᴏᴅ ᴀᴘᴋɪ ʟɪғᴇ ᴀʟᴡᴀʏs ʜᴀᴘᴘɪᴇ ʀᴀᴋʜᴇ ᴀᴘᴋᴏ ʜᴀʀ ᴇᴋ ᴘʀᴏʙʟᴇᴍ s ᴅᴜʀ ʀᴀᴋʜᴇ ᴀᴘᴋɪ sᴀʀɪ ᴡɪsʜᴇs ᴄᴏᴍᴘʟᴇᴛᴇ ʜᴏ.... 💯 ᴀᴘ ᴀʟᴡᴀʏs sᴜᴄᴄᴇss ʜᴏ...🤞 ᴜ ʜᴀᴠᴇ ᴀ ʙʀɪɢʜᴛ ғᴜᴛᴜʀᴇ....✨
         </div>
     </div>
 
     <script>
         function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.getElementById('heartContainer').appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
+            const heart = document.getElementById('heartContainer');
+            const el = document.createElement('div');
+            el.classList.add('heart');
+            el.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.appendChild(el);
+            setTimeout(() => { el.remove(); }, 5000);
         }
         setInterval(createHeart, 300);
     </script>
